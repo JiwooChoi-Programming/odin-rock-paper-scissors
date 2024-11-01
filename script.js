@@ -10,7 +10,7 @@ function getComputerChoice() {
         computerChoice = "scissors";
     }
 
-    console.log(computerChoice);
+    console.log(`Computer: ${computerChoice}`);
 
     return computerChoice;
 }
@@ -27,7 +27,7 @@ function getHumanChoice() {
         humanChoice = "scissors";
     }
 
-    console.log(humanChoice);
+    console.log(`Human: ${humanChoice}`);
 
     return humanChoice;
 }
