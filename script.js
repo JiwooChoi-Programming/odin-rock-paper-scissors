@@ -58,6 +58,9 @@ function playRound(humanChoice, computerChoice) {
 }
 
 function playGame() {
+    console.log("Human");
+    console.log("Computer");
+
     playRound(getHumanChoice(), getComputerChoice());
     playRound(getHumanChoice(), getComputerChoice());
     playRound(getHumanChoice(), getComputerChoice());
