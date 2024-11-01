@@ -16,7 +16,7 @@ function getComputerChoice() {
 }
 
 function getHumanChoice() {
-    let message = prompt("Choose the following: rock, paper, scissors", "rock");
+    let message = prompt("Choose the following: rock, paper, scissors", "rock").toLowerCase();
     let humanChoice = '';
 
     if (message === "rock") {
@@ -57,7 +57,35 @@ function playRound(humanChoice, computerChoice) {
     }
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+function playGame() {
+    playRound(getHumanChoice(), getComputerChoice());
+    playRound(getHumanChoice(), getComputerChoice());
+    playRound(getHumanChoice(), getComputerChoice());
+    playRound(getHumanChoice(), getComputerChoice());
+    playRound(getHumanChoice(), getComputerChoice());
 
-playRound(humanSelection, computerSelection);
+    if (humanScore > computerScore) {
+        console.log(
+            `
+            Human: ${humanScore} Computer: ${computerScore}
+            Human wins!
+            `
+        )
+    } else if (humanScore === computerScore) {
+        console.log(
+            `
+            Human: ${humanScore} Computer: ${computerScore}
+            Draw!
+            `
+        )
+    }else {
+        console.log(
+            `
+            Human: ${humanScore} Computer: ${computerScore}
+            Computer wins!
+            `
+        )
+    }
+}
+
+playGame();
