@@ -1,30 +1,63 @@
 function getComputerChoice() {
-    let result = Math.random();
+    let randomNumber = Math.random();
+    let computerChoice = '';
     
-    if (result >= 0 && result <= 1 / 3) {
-        result = console.log("rock");
-    } else if (result >= 1 / 3 && result <= 2 / 3) {
-        result = console.log("paper");
-    } else if (result >= 2 / 3 && result <= 1) {
-        result = console.log("scissors");
-    };
+    if (randomNumber >= 0 && randomNumber <= 1 / 3) {
+        computerChoice = "rock";
+    } else if (randomNumber >= 1 / 3 && randomNumber <= 2 / 3) {
+        computerChoice = "paper";
+    } else if (randomNumber >= 2 / 3 && randomNumber <= 1) {
+        computerChoice = "scissors";
+    }
 
-    return result;
+    console.log(computerChoice);
+
+    return computerChoice;
 }
 
 function getHumanChoice() {
     let message = prompt("Choose the following: rock, paper, scissors", "rock");
+    let humanChoice = '';
 
     if (message === "rock") {
-        console.log("rock");
+        humanChoice = "rock";
     } else if (message === "paper") {
-        console.log("paper");
+        humanChoice = "paper";
     } else if (message === "scissors") {
-        console.log("scissors");
+        humanChoice = "scissors";
     }
-    
-    return message;
+
+    console.log(humanChoice);
+
+    return humanChoice;
 }
 
-getComputerChoice();
-getHumanChoice();
+let humanScore = 0;
+let computerScore = 0;
+
+function playRound(humanChoice, computerChoice) {
+    if (humanChoice === "rock" && computerChoice === "paper" ||
+        humanChoice === "paper" && computerChoice === "scissors" ||
+        humanChoice === "scissors" && computerChoice === "rock"
+    ) {
+        console.log(
+            `You lose! Human ${humanChoice} Computer: ${computerChoice}`
+        );
+        console.log(`Computer score: ${++computerScore}`);
+    } else if (humanChoice === "paper" && computerChoice === "rock" ||
+        humanChoice === "scissors" && computerChoice === "paper" ||
+        humanChoice === "rock" && computerChoice === "scissors"
+    ) {
+        console.log(
+            `You win! Human: ${humanChoice} Computer: ${computerChoice}`
+        );
+        console.log(`Human score: ${++humanScore}`);
+    } else if (humanChoice === computerChoice) {
+        console.log(`Draw! Human: ${humanChoice} Computer: ${computerChoice}`);
+    }
+}
+
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
+
+playRound(humanSelection, computerSelection);
