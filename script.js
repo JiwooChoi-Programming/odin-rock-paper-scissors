@@ -3,7 +3,7 @@ const options = ["rock", "paper", "scissors"];
 function getHumanChoice() {
     let validatedInput = false;
     while (validatedInput === false) {
-        const choice = prompt("Rock, Paper, Scissors");
+        const choice = prompt("Choose a option between rock, paper or scissors");
         if (choice === null) {
             continue;
         }
@@ -39,11 +39,11 @@ function checkWinner(humanChoice, computerChoice) {
 function playRound(humanChoice, computerChoice) {
     const result = checkWinner(humanChoice, computerChoice);
     if (result === "Tie") {
-        return "It's a Tie!";
+        return `It's a Tie! Human: ${humanChoice} Computer: ${computerChoice}`;
     } else if (result === "Player") {
-        return `You Win! ${humanChoice} beats ${computerChoice}`;
+        return `You Win! Human: ${humanChoice} Computer: ${computerChoice}`;
     } else {
-        return `You Lose! ${computerChoice} beats ${humanChoice}`;
+        return `You Lose! Human: ${computerChoice} Computer: ${humanChoice}`;
     }
 }
 
@@ -52,11 +52,11 @@ function playGame() {
     let computerScore = 0;
 
     console.log("Welcome!");
-    for (let i = 0; i < 5; i++) {
+    for (let i = 1; i < 6; i++) {
+        console.log(`Round ${i}`);
         const playerSelection = getHumanChoice();
         const computerSelection = getComputerChoice();
         console.log(playRound(playerSelection, computerSelection));
-        console.log("-----------");
         
         if (checkWinner(playerSelection, computerSelection) === "Player") {
             playerScore++;
@@ -68,11 +68,11 @@ function playGame() {
     console.log("Game Over!");
 
     if (playerScore > computerScore) {
-        console.log("Player wins!");
+        console.log(`Human wins! Human: ${playerScore} Computer: ${computerScore}`);
     } else if (playerScore < computerScore) {
-        console.log("Computer wins!");
+        console.log(`Computer wins! Human: ${playerScore} Computer: ${computerScore}`);
     } else {
-        console.log("We have a Tie!");
+        console.log(`We have a Tie! Human: ${playerScore} Computer: ${computerScore}`);
     }
 }
 
