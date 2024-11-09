@@ -1,22 +1,5 @@
 const options = ["rock", "paper", "scissors"];
 
-function getHumanChoice() {
-    let validatedInput = false;
-    while (validatedInput === false) {
-        const choice = prompt("Choose a option between rock, paper or scissors");
-        if (choice === null) {
-            continue;
-        }
-
-        const choiceInLower = choice.toLowerCase();
-
-        if (options.includes(choiceInLower)) {
-            validatedInput = true;
-            return choiceInLower;
-        }
-    }
-}
-
 function getComputerChoice() {
     const choice = options[Math.floor(Math.random() * options.length)];
     return choice;
@@ -43,26 +26,23 @@ function playRound(humanChoice, computerChoice) {
     } else if (result === "Player") {
         return `You Win! Human: ${humanChoice} Computer: ${computerChoice}`;
     } else {
-        return `You Lose! Human: ${computerChoice} Computer: ${humanChoice}`;
+        return `You Lose! Human: ${humanChoice} Computer: ${computerChoice}`;
     }
 }
 
-function playGame() {
+function playGame(humanChoice) {
     let playerScore = 0;
     let computerScore = 0;
 
     console.log("Welcome!");
-    for (let i = 1; i < 6; i++) {
-        console.log(`Round ${i}`);
-        const playerSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-        console.log(playRound(playerSelection, computerSelection));
-        
-        if (checkWinner(playerSelection, computerSelection) === "Player") {
-            playerScore++;
-        } else if (checkWinner(playerSelection, computerSelection) === "Computer") {
-            computerScore++;
-        }
+    const playerSelection = humanChoice;
+    const computerSelection = getComputerChoice();
+    console.log(playRound(playerSelection, computerSelection));
+    
+    if (checkWinner(playerSelection, computerSelection) === "Player") {
+        playerScore++;
+    } else if (checkWinner(playerSelection, computerSelection) === "Computer") {
+        computerScore++;
     }
 
     console.log("Game Over!");
@@ -76,4 +56,22 @@ function playGame() {
     }
 }
 
-playGame();
+function selectButton() {
+    const rockButton = document.querySelector("#rock");
+    const paperButton = document.querySelector("#paper");
+    const scissorsButton = document.querySelector("#scissors");
+
+    rockButton.addEventListener("click", () => {
+        playGame("rock");
+    });
+
+    paperButton.addEventListener("click", () => {
+        playGame("paper");
+    });
+
+    scissorsButton.addEventListener("click", () => {
+        playGame("scissors");
+    })
+}
+
+selectButton();
