@@ -48,11 +48,31 @@ function playRound(humanChoice, computerChoice) {
 }
 
 function playGame() {
+    let playerScore = 0;
+    let computerScore = 0;
+
     console.log("Welcome!");
     for (let i = 0; i < 5; i++) {
-        const playerSelection = "rock";
+        const playerSelection = getHumanChoice();
         const computerSelection = getComputerChoice();
         console.log(playRound(playerSelection, computerSelection));
+        console.log("-----------");
+        
+        if (checkWinner(playerSelection, computerSelection) === "Player") {
+            playerScore++;
+        } else if (checkWinner(playerSelection, computerSelection) === "Computer") {
+            computerScore++;
+        }
+    }
+
+    console.log("Game Over!");
+
+    if (playerScore > computerScore) {
+        console.log("Player wins!");
+    } else if (playerScore < computerScore) {
+        console.log("Computer wins!");
+    } else {
+        console.log("We have a Tie!");
     }
 }
 
