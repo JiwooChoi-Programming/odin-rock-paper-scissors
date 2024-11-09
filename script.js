@@ -1,8 +1,5 @@
 const options = ["rock", "paper", "scissors"];
 
-const rockButton = document.querySelector("#rock");
-const paperButton = document.querySelector("#paper");
-const scissorsButton = document.querySelector("#scissors");
 const buttonContainer = document.querySelector("#buttonContainer");
 const buttonContent = document.querySelector("#buttonContent");
 
@@ -68,16 +65,22 @@ function playGame(humanChoice) {
 }
 
 function selectButton() {
-    rockButton.addEventListener("click", () => {
-        playGame("rock");
-    });
+    buttonContent.addEventListener("click", (event) => {
+        event = event.target;
 
-    paperButton.addEventListener("click", () => {
-        playGame("paper");
-    });
+        switch (event.id) {
+            case "rock":
+            playGame("rock");
+            break;
 
-    scissorsButton.addEventListener("click", () => {
-        playGame("scissors");
+            case "paper":
+            playGame("paper");
+            break;
+
+            case "scissors":
+            playGame("scissors");
+            break;
+        }
     });
 }
 
