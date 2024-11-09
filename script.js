@@ -1,4 +1,11 @@
 const options = ["rock", "paper", "scissors"];
+
+const rockButton = document.querySelector("#rock");
+const paperButton = document.querySelector("#paper");
+const scissorsButton = document.querySelector("#scissors");
+const buttonContainer = document.querySelector("#buttonContainer");
+const buttonContent = document.querySelector("#buttonContent");
+
 const resultElement = document.querySelector("#result");
 const scoreElement = document.querySelector("#score");
 
@@ -41,25 +48,26 @@ function playGame(humanChoice) {
     resultElement.textContent = playRound(playerSelection, computerSelection);
     
     if (checkWinner(playerSelection, computerSelection) === "Player") {
-        playerScore++;
+        scoreElement.textContent = `Human: ${++playerScore} Computer: ${computerScore}`;
     } else if (checkWinner(playerSelection, computerSelection) === "Computer") {
-        computerScore++;
+        scoreElement.textContent = `Human: ${playerScore} Computer: ${++computerScore}`;
+    } else if (checkWinner(playerSelection, computerSelection) === "Tie") {
+        scoreElement.textContent = `Human: ${playerScore} Computer: ${computerScore}`;
     }
 
-    if (playerScore > computerScore) {
+    if (playerScore === 5) {
         scoreElement.textContent = `Human wins! Human: ${playerScore} Computer: ${computerScore}`;
-    } else if (playerScore < computerScore) {
+        buttonContainer.removeChild(buttonContent);
+    } else if (computerScore === 5) {
         scoreElement.textContent = `Computer wins! Human: ${playerScore} Computer: ${computerScore}`;
-    } else {
+        buttonContainer.removeChild(buttonContent);
+    } else if (playerScore === 4 && computerScore === 4) {
         scoreElement.textContent = `We have a Tie! Human: ${playerScore} Computer: ${computerScore}`;
+        buttonContainer.removeChild(buttonContent);
     }
 }
 
 function selectButton() {
-    const rockButton = document.querySelector("#rock");
-    const paperButton = document.querySelector("#paper");
-    const scissorsButton = document.querySelector("#scissors");
-
     rockButton.addEventListener("click", () => {
         playGame("rock");
     });
@@ -70,7 +78,7 @@ function selectButton() {
 
     scissorsButton.addEventListener("click", () => {
         playGame("scissors");
-    })
+    });
 }
 
 selectButton();
