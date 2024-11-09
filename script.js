@@ -1,4 +1,7 @@
 const options = ["rock", "paper", "scissors"];
+const resultElement = document.querySelector("#result");
+const scoreElement = document.querySelector("#score");
+
 let playerScore = 0;
 let computerScore = 0;
 
@@ -33,10 +36,9 @@ function playRound(humanChoice, computerChoice) {
 }
 
 function playGame(humanChoice) {
-    console.log("Welcome!");
     const playerSelection = humanChoice;
     const computerSelection = getComputerChoice();
-    console.log(playRound(playerSelection, computerSelection));
+    resultElement.textContent = playRound(playerSelection, computerSelection);
     
     if (checkWinner(playerSelection, computerSelection) === "Player") {
         playerScore++;
@@ -44,14 +46,12 @@ function playGame(humanChoice) {
         computerScore++;
     }
 
-    console.log("Game Over!");
-
     if (playerScore > computerScore) {
-        console.log(`Human wins! Human: ${playerScore} Computer: ${computerScore}`);
+        scoreElement.textContent = `Human wins! Human: ${playerScore} Computer: ${computerScore}`;
     } else if (playerScore < computerScore) {
-        console.log(`Computer wins! Human: ${playerScore} Computer: ${computerScore}`);
+        scoreElement.textContent = `Computer wins! Human: ${playerScore} Computer: ${computerScore}`;
     } else {
-        console.log(`We have a Tie! Human: ${playerScore} Computer: ${computerScore}`);
+        scoreElement.textContent = `We have a Tie! Human: ${playerScore} Computer: ${computerScore}`;
     }
 }
 
